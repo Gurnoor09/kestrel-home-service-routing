@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kestrel Home Appliances — Service Request Router</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-group">
+        <div class="brand-badge">KESTREL</div>
+        <div>
+          <h1>Service Request Router</h1>
+          <p class="subtitle">Operational Intelligent Routing Engine (Variant B — Canonical 7 Teams)</p>
+        </div>
+      </div>
+      <div class="status-badge" id="systemStatus">
+        <span class="pulse-dot"></span> System Ready
+      </div>
+    </header>
+
+    <main class="grid-layout">
+      <!-- Input Section -->
+      <section class="card input-card">
+        <div class="card-header">
+          <h2>Inbound Request Details</h2>
+          <span class="badge-sub">Intake Input</span>
+        </div>
+
+        <form id="routingForm">
+          <div class="preset-selector">
+            <label>Load Example Case:</label>
+            <select id="examplePresets">
+              <option value="">-- Choose Sample Request --</option>
+              <option value="billing_true">Billing: Tax Invoice & Double Charge</option>
+              <option value="billing_trap">Repair (Paid Trap): "Water purifier leaking, paid in full"</option>
+              <option value="repair_breakdown">Repairs: Induction Cooktop Tripping MCB</option>
+              <option value="consumable">Filters & Consumables: Purifier Candle & Membrane</option>
+              <option value="install">Installs & Demo: Air Fryer Wall Mount / Demo</option>
+              <option value="return_replace">Returns & Replacement: Damaged in transit</option>
+              <option value="warranty">Warranty Claims: Shield Plan registration</option>
+              <option value="advice">Product Advice: Air Fryer temperature setting</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="requestText">Customer Message / Transcript <span class="required">*</span></label>
+            <textarea id="requestText" rows="4" placeholder="Enter customer opening statement or IVR transcript..." required></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="productFamily">Product Family</label>
+              <select id="productFamily" required>
+                <option value="Water Purifier">Water Purifier</option>
+                <option value="Air Fryer">Air Fryer</option>
+                <option value="Mixer Grinder">Mixer Grinder</option>
+                <option value="Induction Cooktop">Induction Cooktop</option>
+                <option value="Room Heater">Room Heater</option>
+                <option value="Ceiling Fan">Ceiling Fan</option>
+                <option value="Robot Vacuum">Robot Vacuum</option>
+              </select>
+            </div>
+
+            <div class="form-group col">
+              <label for="warrantyStatus">Warranty Status</label>
+              <select id="warrantyStatus" required>
+                <option value="in_warranty">In Warranty</option>
+                <option value="shield">Kestrel Shield</option>
+                <option value="out_of_warranty">Out of Warranty</option>
+              </select>
+            </div>
+
+            <div class="form-group col">
+              <label for="channel">Channel</label>
+              <select id="channel" required>
+                <option value="chat">Chat</option>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="ivr">IVR Transcript</option>
+                <option value="email">Email</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" id="routeBtn">
+            <span class="btn-text">Route Request</span>
+            <span class="spinner" id="btnSpinner" style="display:none;"></span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Prediction Output Section -->
+      <section class="card output-card">
+        <div class="card-header">
+          <h2>Routing Decision</h2>
+          <span class="badge-sub" id="inferenceBadge">Awaiting Input</span>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">🎯</div>
+          <h3>No Routing Yet</h3>
+          <p>Submit an inbound customer request or pick an example preset on the left to see real-time routing and decision reasons.</p>
+        </div>
+
+        <div id="resultsContent" style="display: none;">
+          <div class="prediction-banner">
+            <div class="banner-title">Assigned Queue:</div>
+            <div class="predicted-team" id="predictedTeam">Repairs</div>
+            <div class="confidence-container">
+              <div class="confidence-bar-bg">
+                <div class="confidence-bar-fill" id="confidenceBar"></div>
+              </div>
+              <div class="confidence-text">
+                Confidence: <strong id="confidenceVal">98.5%</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="reasons-section">
+            <h3>Decision Evidence & Policy Rules</h3>
+            <ul class="reasons-list" id="reasonsList">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+          <div class="probabilities-section">
+            <h3>Alternative Queue Probabilities</h3>
+            <div class="prob-table" id="probTable">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <div class="footer-meta" id="modelSignal">
+            <!-- Model signal details -->
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Assessment raw datasets & internal materials (excluded for privacy/security)
+train.csv
+test_unlabelled.csv
+resolution_log.csv
+teams.csv
+sample_submission.csv
+ops-policy.pdf
+email-thread.txt
+README.txt
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# OS and IDE files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment variables & secrets
+.env
+*.pem
