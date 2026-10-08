@@ -5,7 +5,7 @@
 * **Target Project:** Kestrel Home Appliances — Service Request Intelligent Router (Task 2)
 * **Date of Submission:** 8 October 2026
 * **Honest Hours Spent:** `[PLACEHOLDER: Honest hours spent on assessment]`
-* **Github Repository Link:** `[PLACEHOLDER: Github repo link]`
+* **Github Repository Link:** https://github.com/Gurnoor09/kestrel-home-service-routing
 * **Public Google Drive Link:** `[PLACEHOLDER: Public Google Drive link]`
 * **Screen Recording Link:** `[PLACEHOLDER: Screen recording link]`
 
